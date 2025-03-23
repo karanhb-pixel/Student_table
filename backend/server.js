@@ -1,91 +1,84 @@
-const express = require("express");
-const mysql = require("mysql2");
-const cors = require("cors");
+//const express = require("express");
+//const mysql = require("mysql2");
+//const cors = require("cors");
+//const db = require("./db");
+
+import express from "express";
+import cors from "cors";
+import db from "./db.js";
 
 const app = express();
 app.use(cors()); //Enable cors
 app.use(express.json()); //parse json bodies
 
-//Mysql connection
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "user",
-});
-
-//Connect to database
-db.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to MySQL database!");
-});
-
 // Example API endpoint to fetch data
-app.get("/api/data", (req, res) => {
+app.get("/api/data", async (req, res) => {
   const query = "SELECT * FROM student";
-  db.query(query, (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(results);
-  });
+  try {
+    const { rows } = await db.query(query); // Use `rows` to get the result
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-app.get("/api/students/:id", (req, res) => {
+app.get("/api/students/:id", async (req, res) => {
   const id = parseInt(req.params.id);
 
   if (isNaN(id)) return res.status(400).json({ error: "Invalid ID format" });
 
-  const query = "SELECT * FROM student WHERE id = ?";
+  const query = "SELECT * FROM student WHERE id = $1";
 
-  db.query(query, [id], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (results.length === 0) {
+  try {
+    const { rows } = await db.query(query, [id]);
+    if (rows.length === 0) {
       return res.status(404).json({ error: "Student not found" });
     }
-    res.json(results[0]);
-  });
+    res.json(rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-app.put("/api/students/:id", (req, res) => {
+//update student by id
+app.put("/api/students/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   const { name, place, phone } = req.body;
   if (isNaN(id)) return res.status(400).json({ error: "Invalid ID format" });
 
   const query =
-    "INSERT INTO student (name, place, phone) VALUES (?, ?, ?) WHERE id = ?";
+    "UPDATE student SET name = $1, place = $2, phone = $3 WHERE id = $4 RETURNING *";
 
-  db.query(query, [name, place, phone, id], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (results.length === 0) {
+  try {
+    const { rows } = await db.query(query, [name, place, phone, id]);
+    if (rows.length === 0) {
       return res.status(404).json({ error: "Student not found" });
     }
-    res.json(results[0]);
-  });
+    res.json(rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // POST endpoint to insert new student
-app.post("/api/students", (req, res) => {
+app.post("/api/students", async (req, res) => {
   const { name, place, phone } = req.body;
 
   // In backend route
   if (!name || !phone) {
     return res.status(400).json({ error: "Name and phone are required" });
   }
-  const query = "INSERT INTO student (name, place, phone) VALUES (?, ?, ?)";
-  db.query(query, [name, place, phone], (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+  const query =
+    "INSERT INTO student (name, place, phone) VALUES ($1, $2, $3) RETURNING *";
+  try {
+    const { rows } = await db.query(query, [name, place, phone]);
     res.json({
-      id: result.insertId,
+      id: rows[0].id,
       message: "Student added successfully",
     });
-  });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Start server
