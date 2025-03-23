@@ -1,0 +1,22 @@
+.studentTable {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin-top: 50px;
+  -webkit-box-shadow: -11px -7px 13px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -11px -7px 13px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: -11px -7px 13px -4px rgba(0, 0, 0, 0.75);
+  padding: 10px;
+}
+
+.studentTable table {
+  text-align: center;
+}
+.studentTable thead {
+  --bs-table-color-type: white;
+  --bs-table-bg-type: rgb(101, 24, 99);
+}
+
+.button {
+  margin: 0px 5px;
+}
