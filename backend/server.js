@@ -1,11 +1,7 @@
-//const express = require("express");
+const express = require("express");
 //const mysql = require("mysql2");
-//const cors = require("cors");
-//const db = require("./db");
-
-import express from "express";
-import cors from "cors";
-import db from "./db.js";
+const cors = require("cors");
+const db = require("./db");
 
 const app = express();
 app.use(cors()); //Enable cors
