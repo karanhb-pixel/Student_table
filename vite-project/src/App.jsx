@@ -5,6 +5,8 @@ import CreateStudent from "./CreateStudent/CreateStudent";
 import EditStudent from "./EditStudent/EditStudent";
 import ViewStudentDetail from "./ViewStudentDetails/ViewStudentDetail";
 
+export const BASE_URL = "http://localhost:5000";
+
 function App() {
   return (
     <>

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./StudentTable.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../App";
 export default function StudentTable() {
   const [data, setData] = useState([]);
 
@@ -9,7 +10,7 @@ export default function StudentTable() {
   useEffect(() => {
     // Fetch data from backend API
     axios
-      .get("http://localhost:5000/api/data")
+      .get(`${BASE_URL}/api/data`)
       .then((response) => {
         setData(response.data);
       })

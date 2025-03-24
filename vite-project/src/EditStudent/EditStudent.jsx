@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./EditStudent.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
+import { BASE_URL } from "../App";
 const EditStudent = () => {
   const [name, setName] = useState("");
   const [place, setPlace] = useState("");
@@ -14,9 +14,7 @@ const EditStudent = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/students/${id}`
-        );
+        const response = await axios.get(`${BASE_URL}/api/students/${id}`);
         const studentData = response.data;
         setName(studentData.name);
         setPlace(studentData.place);
@@ -31,7 +29,7 @@ const EditStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/students/${id}`, {
+      await axios.put(`${BASE_URL}/api/students/${id}`, {
         name,
         place,
         phone,

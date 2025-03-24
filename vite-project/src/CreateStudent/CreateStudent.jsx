@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./CreateStudent.css";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../App";
 export default function CreateStudent() {
   const [name, setName] = useState("");
   const [place, setPlace] = useState("");
@@ -18,7 +19,7 @@ export default function CreateStudent() {
 
     const studentData = { name, place, phone };
 
-    fetch("http://localhost:5000/api/students", {
+    fetch(`${BASE_URL}/api/students`, {
       // Changed endpoint to /api/students
       method: "POST",
       headers: {

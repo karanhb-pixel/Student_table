@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { BASE_URL } from "../App";
 const ViewStudentDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -11,9 +11,7 @@ const ViewStudentDetail = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/students/${id}`
-        );
+        const response = await axios.get(`${BASE_URL}/api/students/${id}`);
         setStudent(response.data);
       } catch (error) {
         console.log("error", error);
