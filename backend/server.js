@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://crud-app-student-table.onrender.com", // Replace with your frontend URL
+    origin: "http://crud-app-student-table.onrender.com", // Replace with your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })
