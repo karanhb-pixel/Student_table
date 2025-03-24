@@ -4,7 +4,14 @@ const cors = require("cors");
 const db = require("./db");
 
 const app = express();
-app.use(cors()); //Enable cors
+
+app.use(
+  cors({
+    origin: "https://crud-app-student-table.onrender.com", // Replace with your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
+); //Enable cors
 app.use(express.json()); //parse json bodies
 
 // Example API endpoint to fetch data
