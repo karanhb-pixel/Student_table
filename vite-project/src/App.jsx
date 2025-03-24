@@ -3,7 +3,7 @@ import "./App.css";
 import StudentTable from "./StudentTable/StudentTable";
 import CreateStudent from "./CreateStudent/CreateStudent";
 import EditStudent from "./EditStudent/EditStudent";
-import ViewStudentDetail from "./ViewStudentDetails/ViewStudentDetail";
+import ViewStudentDetail from "./VIewStudentDetails/ViewStudentDetail";
 
 function App() {
   return (
