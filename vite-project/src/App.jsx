@@ -5,7 +5,7 @@ import CreateStudent from "./CreateStudent/CreateStudent";
 import EditStudent from "./EditStudent/EditStudent";
 import ViewStudentDetail from "./VIewStudentDetails/ViewStudentDetail";
 
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://crud-backend-7yxo.onrender.com";
 
 function App() {
   return (
