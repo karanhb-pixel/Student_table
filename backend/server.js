@@ -85,7 +85,7 @@ app.post("/api/students", async (req, res) => {
 });
 
 // Start server
-const PORT = 5000;
+const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
 });
