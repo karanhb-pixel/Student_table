@@ -84,6 +84,24 @@ app.post("/api/students", async (req, res) => {
   }
 });
 
+// DELETE endpoint to delete student by id
+app.delete("/api/students/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) return res.status(400).json({ error: "Invalid ID format" });
+
+  const query = "DELETE FROM student WHERE id = $1 RETURNING *";
+
+  try {
+    const { rows } = await db.query(query, [id]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+    res.json({ message: "Student deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Start server
 const PORT = 8080;
 app.listen(PORT, () => {

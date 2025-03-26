@@ -19,6 +19,19 @@ export default function StudentTable() {
       });
   }, []);
 
+  const deletestudent = (id) => {
+    if (window.confirm("Are you sure you want to delete this student?")) {
+      axios
+        .delete(`${BASE_URL}/api/students/${id}`)
+        .then((response) => {
+          setData(data.filter((item) => item.id !== id));
+        })
+        .catch((error) => {
+          console.error("Error deleting student:", error);
+        });
+    }
+  };
+
   return (
     <div className="studentTable">
       <h1 className="my-5 text-center">Student Table</h1>
@@ -57,7 +70,12 @@ export default function StudentTable() {
                     >
                       Edit
                     </button>
-                    <button className="btn btn-danger button">Delete</button>
+                    <button
+                      onClick={() => deletestudent(item.id)}
+                      className="btn btn-danger button"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
