@@ -14,7 +14,7 @@ A full-stack web application for managing student information with CRUD operatio
 
 # Screen Shot
 
-![Alt text](image/student-table-1.jpg)
+![Alt text](image/student_table-1.jpg)
 
 ## Technologies Used
 
