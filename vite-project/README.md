@@ -1,12 +1,121 @@
-# React + Vite
+# Student Table Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for managing student information with CRUD operations.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend
 
-## Expanding the ESLint configuration
+- React.js
+- Vite (Build tool)
+- CSS for styling
+- Node.js (Runtime environment)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Backend
+
+- Node.js
+- Express.js
+- PostgreSQL (Database)
+- Docker (Containerization)
+
+## Prerequisites
+
+Before you begin, ensure you have installed:
+
+- Node.js (v14 or higher)
+- npm (Node Package Manager)
+- PostgreSQL (Database)
+- Docker (optional, for containerization)
+
+## Installation and Setup
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+
+```bash
+cd vite-project
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+The frontend will be available at `http://localhost:5173`
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+
+```bash
+cd backend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the backend server:
+
+```bash
+npm start
+```
+
+The backend server will run on `http://localhost:3000`
+
+## Features
+
+- Create new student records
+- View list of all students
+- View detailed student information
+- Edit existing student information
+- Delete student records
+
+## Project Structure
+
+```
+├── backend/           # Backend server files
+│   ├── config/        # Database configuration
+│   ├── models/        # Database models
+│   └── server.js      # Main server file
+│
+└── vite-project/      # Frontend React application
+    ├── src/
+    │   ├── CreateStudent/    # Student creation component
+    │   ├── EditStudent/      # Student editing component
+    │   ├── StudentTable/     # Student list view component
+    │   └── ViewStudentDetails/ # Detailed student view
+```
+
+## Environment Requirements
+
+- Node.js v14 or higher
+- npm v6 or higher
+- Modern web browser
+- MongoDB v4.4 or higher
+
+## Development Platform
+
+This application can be developed and run on:
+
+- Windows
+- macOS
+- Linux
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
