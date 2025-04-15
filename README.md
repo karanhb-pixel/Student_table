@@ -12,6 +12,10 @@ Also using postgreSQL in render database
 
 A full-stack web application for managing student information with CRUD operations.
 
+# Screen Shot
+
+![Alt text](image/student-table-1.jpg)
+
 ## Technologies Used
 
 ### Frontend
